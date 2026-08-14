@@ -1,0 +1,40 @@
+llm:
+  provider: openai                     # 使用的 LLM 提供商：openai | anthropic
+  base_url: https://api.openai.com/v1  # API 地址
+  api_key: ""                           # API Key（推荐写在 .env 中）
+  model: gpt-4o-mini                    # 模型名称
+  temperature: 0.7                      # 生成温度：0.0 ~ 2.0
+  max_chars: 30000                      # 输入上下文最长字符数
+  stream: true                          # 是否流式返回
+
+embedding:
+  provider: openai                     # 使用的 Embedding 提供商：openai | dashscope
+  base_url: https://api.openai.com/v1
+  api_key: ""
+  model: text-embedding-3-small        # 嵌入模型名称
+
+asr:                                     # 语音识别（视频/音频文件转文字）
+  provider: dashscope                   # ASR 提供商：dashscope
+  base_url: https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation
+  api_key: ""
+  model: qwen-audio-3.0-asr-flash       # ASR 模型名称
+
+ingestion_pipeline:                      # IngestionPipeline：导入文件 → 清洗 → 分块 → 持久化 → 索引
+  cleaner_provider: default             # 文本清洗
+  splitter_provider: default            # 文本分块
+  chunk_size: 1000                       # 目标分块大小（字符数）
+  stride: 800                            # 滑动步距（字符数）
+  storage_provider: file                # 持久化方式：file（文件系统）| ...
+  indexer_provider: chroma              # 索引方式：chroma | ...
+
+query_pipeline:                          # QueryPipeline：检索 → 排序 → 组装 Prompt → LLM 生成
+  retriever_provider: hybrid            # 检索方式：hybrid | vector_only | bm25_only
+  ranker_provider: hybrid               # 排序方式：hybrid（权重融合）| rrf | ...
+  prompt_builder_provider: default      # Prompt 组装方式：default | ...
+  vector_weight: 0.5                    # 向量检索权重（0.0 ~ 1.0），仅 hybrid 模式
+  vector_top_k: 20                       # 向量检索返回前 N 条
+  bm25_top_k: 20                        # BM25 关键词检索返回前 N 条
+  final_top_k: 10                       # 融合后最终返回前 N 条
+
+data:
+  root: ./data                          # 数据根目录（含 input/ processed/ docs/ vector/ 等子目录）

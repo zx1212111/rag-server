@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+venv/
+.venv/
+
+# Data (runtime generated)
+data/input/
+data/processed/
+data/docs/
+data/assets/
+data/vector/
+data/sparse/
+data/index.json
+
+# IDE
+.vscode/
+.idea/
+
+# Test / Cache
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db

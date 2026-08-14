@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(cd /d \"D:\\\\PycharmPorjects\\\\RAG-SERVER-MCP\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('rag_server/config.py'\\).read\\(\\)\\); print\\('config.py OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('rag_server/registry.py'\\).read\\(\\)\\); print\\('registry.py OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('rag_server/text/splitter.py'\\).read\\(\\)\\); print\\('splitter.py OK'\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('rag_server/stores/index_store.py'\\).read\\(\\)\\); print\\('index_store.py OK'\\)\")",
+      "Bash(python *)"
+    ]
+  }
+}
