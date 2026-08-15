@@ -125,8 +125,6 @@ def main():
         config.query_pipeline.vector_top_k = vector_top_k
         config.query_pipeline.bm25_top_k = bm25_top_k
         config.query_pipeline.final_top_k = final_top_k
-        config.stitcher.enabled = stitcher_enabled
-        config.stitcher.dedup = stitcher_dedup
 
         pipeline = get_pipeline(config)
 
