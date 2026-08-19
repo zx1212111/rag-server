@@ -30,8 +30,9 @@ class QueryPipeline:
         self._llm: Optional[LLM] = None
 
     def _ensure_services(self):
+        """确保所有服务已创建。"""
         cfg = self.config
-        r = cfg.query_pipeline
+        r = cfg.query_pipeline  #拿到config中的query_pipeline配置
         if self._retriever is None:
             self._retriever = Factory.create(
                 "retriever", r.retriever_provider,
@@ -93,7 +94,8 @@ class QueryPipeline:
         3. 上下文组装（Assembler）
         4. LLM 生成
         """
-        self._ensure_services()
+
+        self._ensure_services()  # 确保服务已创建
 
         # 1. 检索
         results = await self._retriever.retrieve(query)
